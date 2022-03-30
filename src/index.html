@@ -8,17 +8,6 @@
         src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js">
       </script>
   
-  
-   function injectAPIKey() {
-        setTimeout(function() {
-          var widget_tree = $("#widget_tree").NCBOTree({
-             apikey: "<my-api-key>",
-             ontology: "ENVO"
-          });
-        }, 10000);
-    }
-
-injectAPIKey();
       <script>
         function injectAPIKey() {
         setTimeout(function() {
@@ -42,8 +31,7 @@ injectAPIKey();
         
                 api.get("/products/PC/features", {}, function (response) {
                     // Do something with the features.
-                  response.feature[0].name="Test through JS";
-                  console.log("INSIDE GET");
+                  console.log(response);
                 });
             });
             // return false;
@@ -51,7 +39,7 @@ injectAPIKey();
            }, 10000);
     }
 
-injectAPIKey();
+// injectAPIKey();
         </script> 
       
 </head>
@@ -60,7 +48,7 @@ injectAPIKey();
 <form id="controls">
   <input type="text" placeholder="Aha! subdomain" id="subdomain">
   <input type="text" placeholder="Product key" id="product-key">
-  <input type="submit"  class="btn" value="Load features">
+  <input type="submit" (click)="injectAPIKey()" class="btn" value="Load features">
 </form>
 <app-root></app-root>
 </body>
