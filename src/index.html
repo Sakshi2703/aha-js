@@ -22,7 +22,7 @@
 <script>
   function injectAPIKey() {
    setTimeout(
-    document.getElementById("buttonsubmit").onclick = function() {
+    function() {
   console.log("inside script");
   // document.getElementById("controls").onclick(function () {
   
@@ -53,7 +53,7 @@
 
 
 
-//injectAPIKey();
+document.getElementById("buttonsubmit").onclick = injectAPIKey;
   </script> 
 </body>
 </html>
