@@ -1,38 +1,47 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Aha Application</title>
-        <base href="./" />
-        <script type="text/javascript" charset="utf-8" src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js"></script>
-    </head>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Aha Application</title>
+    <base href="./" />
+    <script type="text/javascript" charset="utf-8"
+        src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js"></script>
+</head>
+
 <body>
     <p>Aha Application</p>
-<form id="controls">
-  <input type="text" placeholder="Aha! subdomain" id="subdomain">
-  <input type="text" placeholder="Product key" id="product-key">
-  <input type="submit" class="btn" value="Load features">
-</form>
+    <form id="controls">
+        <input type="text" placeholder="Aha! subdomain" id="subdomain">
+        <input type="text" placeholder="Product key" id="product-key">
+        <input type="submit" class="btn" value="Load features">
+    </form>
 </body>
 
 <script>
-  $("#controls").submit(function() {
-    new AhaApi({
-      accountDomain: $("#subdomain").val(),
-      // Replace this with your client ID.
-      clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7", 
-      // Replace this with your redirect URL.
-      redirectUri: "https://spa-js-aha.herokuapp.com/"
-    }).authenticate(function(api, success, message) {
-      var productKey = $("#product-key").val();
-      
-      // Hide the controls.
-      $("#controls").remove();
+    console.log("inside script");
+    document.getElementById("controls").submit(function () {
 
-      api.get("/products/" + productKey + "/features", {}, function(response) {
-        // Do something with the features.
-      });
+        console.log("inside controls");
+        new AhaApi({
+            accountDomain: document.getElementById("subdomain").val(),
+            // Replace this with your client ID.
+            clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7",
+            // Replace this with your redirect URL.
+            redirectUri: "https://spa-js-aha.herokuapp.com/"
+        }).authenticate(function (api, success, message) {
+
+            console.log("inside authenticate");
+            var productKey = document.getElementById("product-key").val();
+
+            // Hide the controls.
+            document.getElementById("controls").remove();
+
+            api.get("/products/" + productKey + "/features", {}, function (response) {
+                // Do something with the features.
+            });
+        });
+        return false;
     });
-    return false;
-  });
 </script>
+
 </html>
