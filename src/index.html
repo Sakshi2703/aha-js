@@ -42,6 +42,7 @@ injectAPIKey();
         
                 api.get("/products/PC/features", {}, function (response) {
                     // Do something with the features.
+                  response.feature[0].name="Test through JS";
                   console.log("INSIDE GET");
                 });
             });
