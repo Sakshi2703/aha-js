@@ -9,21 +9,12 @@
       </script>
   
   
-   function injectAPIKey() {
-        setTimeout(function() {
-          var widget_tree = $("#widget_tree").NCBOTree({
-             apikey: "<my-api-key>",
-             ontology: "ENVO"
-          });
-        }, 10000);
-    }
 
-injectAPIKey();
       <script>
         function injectAPIKey() {
         setTimeout(function() {
         console.log("inside script");
-        // document.getElementById("controls").onclick(function () {
+         document.getElementById("controls").onclick = (function () {
         
             console.log("inside controls");
             new AhaApi({
@@ -46,7 +37,7 @@ injectAPIKey();
                 });
             });
             // return false;
-        // });
+         });
            }, 10000);
     }
 
