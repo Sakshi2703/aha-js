@@ -7,43 +7,41 @@
     <script type="text/javascript" charset="utf-8"
         src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js">
       </script>
+      <script>
+        console.log("inside script");
+        // document.getElementById("controls").onclick(function () {
+        
+            console.log("inside controls");
+            new AhaApi({
+                accountDomain: "sakshi270396",
+                // Replace this with your client ID.
+                clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7",
+                // Replace this with your redirect URL.
+                redirectUri: "https://spa-js-aha.herokuapp.com/"
+            }).authenticate(function (api, success, message) {
+        
+                console.log("inside authenticate");
+                var productKey = "PC";
+        
+                // Hide the controls.
+                // document.getElementById("controls").remove();
+        
+                api.get("/products/" + productKey + "/features", {}, function (response) {
+                    // Do something with the features.
+                });
+            });
+            // return false;
+        // });
+        </script> 
+      
 </head>
 
 <body>
-  <app-root></app-root>
-    <p>Aha Application</p>
-    <form id="controls">
-        <input type="text" placeholder="Aha! subdomain" id="subdomain">
-        <input type="text" placeholder="Product key" id="product-key">
-        <input type="submit" class="btn" value="Load features">
-    </form>
+<form id="controls">
+  <input type="text" placeholder="Aha! subdomain" id="subdomain">
+  <input type="text" placeholder="Product key" id="product-key">
+  <input type="submit"  class="btn" value="Load features">
+</form>
+<app-root></app-root>
 </body>
-
-<script>
-    console.log("inside script");
-    document.getElementById("controls").submit(function () {
-
-        console.log("inside controls");
-        new AhaApi({
-            accountDomain: document.getElementById("subdomain").val(),
-            // Replace this with your client ID.
-            clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7",
-            // Replace this with your redirect URL.
-            redirectUri: "https://sakshi270396.aha.io/oauth/authorize?client_id=ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7&redirect_uri=https%3A%2F%2Fspa-js-aha.herokuapp.com%2F&response_type=token"
-        }).authenticate(function (api, success, message) {
-
-            console.log("inside authenticate");
-            var productKey = document.getElementById("product-key").val();
-
-            // Hide the controls.
-            document.getElementById("controls").remove();
-
-            api.get("/products/" + productKey + "/features", {}, function (response) {
-                // Do something with the features.
-            });
-        });
-        return false;
-    });
-</script>
-
 </html>
