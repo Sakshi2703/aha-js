@@ -1,5 +1,25 @@
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AhaApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+</body> -->
+<!-- </html> -->
+
+
 <html>
     <head>
+      <meta charset="utf-8">
+      <title>AhaApp</title>
+      <base href="/">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
         <script type="text/javascript" charset="utf-8" src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js"></script>
     </head>
 <form id="controls">
@@ -13,7 +33,7 @@
     new AhaApi({
       accountDomain: $("#subdomain").val(),
       // Replace this with your client ID.
-      clientId: "d46f1677e788861a64c7184be272bf6a0e267d327a26167af5656ff121a097d5", 
+      clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7", 
       // Replace this with your redirect URL.
       redirectUri: "https://aha-connect.herokuapp.com/contents"
     }).authenticate(function(api, success, message) {
