@@ -34,17 +34,18 @@
           // Replace this with your redirect URL.
           redirectUri: "https://spa-js-aha.herokuapp.com/"
       }).authenticate(function (api, success, message) {
-  
+          if( document.getElementById("subdomain") !== "") {
           console.log("inside authenticate");
           var productKey = "PC";
   
           // Hide the controls.
           // document.getElementById("controls").remove();
   
-          document.getElementById("subdomain") !== "" && api.get("/products/PC/features", {}, function (response) {
+          api.get("/products/PC/features", {}, function (response) {
               // Do something with the features.
             console.log(response);
           });
+          }
       });
       // return false;
   // });
