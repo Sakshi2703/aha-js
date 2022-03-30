@@ -7,7 +7,21 @@
     <script type="text/javascript" charset="utf-8"
         src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js">
       </script>
+  
+  
+   function injectAPIKey() {
+        setTimeout(function() {
+          var widget_tree = $("#widget_tree").NCBOTree({
+             apikey: "<my-api-key>",
+             ontology: "ENVO"
+          });
+        }, 10000);
+    }
+
+injectAPIKey();
       <script>
+        function injectAPIKey() {
+        setTimeout(function() {
         console.log("inside script");
         // document.getElementById("controls").onclick(function () {
         
@@ -33,6 +47,10 @@
             });
             // return false;
         // });
+           }, 10000);
+    }
+
+injectAPIKey();
         </script> 
       
 </head>
