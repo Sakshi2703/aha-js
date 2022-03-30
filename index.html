@@ -1,12 +1,18 @@
 <html>
     <head>
+        <meta charset="utf-8" />
+        <title>Aha Application</title>
+        <base href="./" />
         <script type="text/javascript" charset="utf-8" src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js"></script>
     </head>
+<body>
+    <p>Aha Application</p>
 <form id="controls">
   <input type="text" placeholder="Aha! subdomain" id="subdomain">
   <input type="text" placeholder="Product key" id="product-key">
   <input type="submit" class="btn" value="Load features">
 </form>
+</body>
 
 <script>
   $("#controls").submit(function() {
