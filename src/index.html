@@ -41,7 +41,7 @@
           // Hide the controls.
           // document.getElementById("controls").remove();
   
-          document.getElementById('subdomain').value !== "" && api.get("/products/PC/features", {}, function (response) {
+          api.get("/products/PC/features", {}, function (response) {
               // Do something with the features.
             console.log(response);
           });
