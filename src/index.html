@@ -1,65 +1,73 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>Aha Application</title>
-    <base href="./" />
-    <script type="text/javascript" charset="utf-8"
-        src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js">
-      </script>
-  
- 
-      
+  <meta charset="utf-8" />
+  <title>Aha Application</title>
+  <base href="./" />
+  <script type="text/javascript" charset="utf-8" src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js">
+  </script>
+
+
+
 </head>
 
 <body>
-<form id="controls" >
-  <input type="text" placeholder="Aha! subdomain" id="subdomain">
-  <input type="text" placeholder="Product key" id="product-key">
-  <button type="submit" id="buttonsubmit" value="Load features">Load features</button>
-</form>
-<app-root></app-root>
-<script>
-  function injectAPIKey() {
-   setTimeout(
-   function() {
-  console.log("inside script");
-  // document.getElementById("controls").onclick(function () {
-  
-      
-      new AhaApi({
-          accountDomain: document.getElementById("subdomain").value,
-          // Replace this with your client ID.
-          clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7",
-          // Replace this with your redirect URL.
-          redirectUri: "https://spa-js-aha.herokuapp.com/"
-      }).authenticate(function (api, success, message) {
-          console.log("inside authenticate");
-          var productKey = document.getElementById("product-key").value;
-  
-          // Hide the controls.
-          // document.getElementById("controls").remove();
-  if(sessionStorage.getItem("buttonClicked") === "clicked") {
-            api.get("/products/" + productKey + "/features", {}, function (response) {
-              // Do something with the features.
-            console.log(response);
-            sessionStorage.setItem("buttonClicked", "notclicked");
-          });
-        }
-      });
-      // return false;
-  // });
-      }, 10000);
+  <form id="controls">
+    <input type="text" placeholder="Aha! subdomain" id="subdomain">
+    <input type="text" placeholder="Product key" id="product-key">
+    <button type="submit" id="buttonsubmit" value="Load features">Load features</button>
+  </form>
+  <app-root></app-root>
+  <script>
+    function injectAPIKey() {
+      setTimeout(
+        function () {
+          console.log("inside script");
+          // document.getElementById("controls").onclick(function () {
 
-      document.getElementById("buttonsubmit").onclick = function() {
+
+          new AhaApi({
+            accountDomain: document.getElementById("subdomain").value || "sakshi270396",
+            // Replace this with your client ID.
+            clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7",
+            // Replace this with your redirect URL.
+            redirectUri: "https://spa-js-aha.herokuapp.com/"
+          }).authenticate(function (api, success, message) {
+            console.log("inside authenticate");
+            var productKey = document.getElementById("product-key").value;
+
+            // Hide the controls.
+            // document.getElementById("controls").remove();
+            if (sessionStorage.getItem("buttonClicked") === "clicked") {
+              api.get("/products/" + productKey + "/features", {}, function (response) {
+                // Do something with the features.
+                console.log(response);
+                api.put("/features/" + response["features"][0]["reference_num"], {
+                  "feature": {
+                    "name": "New name"
+                  }
+                },function (response) {
+                  // Do something with the features.
+                  console.log(response);
+                })
+                sessionStorage.setItem("buttonClicked", "notclicked");
+              });
+            }
+          });
+          // return false;
+          // });
+        }, 10000);
+
+      document.getElementById("buttonsubmit").onclick = function () {
         sessionStorage.setItem("buttonClicked", "clicked");
       }
-}
+    }
 
 
 
 
-injectAPIKey();
-  </script> 
+    injectAPIKey();
+  </script>
 </body>
+
 </html>
