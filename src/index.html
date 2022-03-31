@@ -34,7 +34,7 @@
             redirectUri: "https://spa-js-aha.herokuapp.com/"
           }).authenticate(function (api, success, message) {
             console.log("inside authenticate");
-            var productKey = document.getElementById("product-key").value;
+            var productKey = document.getElementById("product-key").value || "PC";
 
             // Hide the controls.
             // document.getElementById("controls").remove();
