@@ -40,15 +40,18 @@
           // Hide the controls.
           // document.getElementById("controls").remove();
   
-          document.getElementById("buttonsubmit").onclick = api.get("/products/PC/features", {}, function (response) {
+          document.getElementById("buttonsubmit").onclick = function() {
+            api.get("/products/PC/features", {}, function (response) {
               // Do something with the features.
             console.log(response);
           });
+        }
       });
       // return false;
   // });
       }, 10000);
 }
+
 
 
 
