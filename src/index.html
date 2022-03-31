@@ -28,19 +28,19 @@
   
       
       new AhaApi({
-          accountDomain: "sakshi270396",
+          accountDomain: document.getElementById("subdomain").value,
           // Replace this with your client ID.
           clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7",
           // Replace this with your redirect URL.
           redirectUri: "https://spa-js-aha.herokuapp.com/"
       }).authenticate(function (api, success, message) {
           console.log("inside authenticate");
-          var productKey = "PC";
+          var productKey = document.getElementById("product-key").value;
   
           // Hide the controls.
           // document.getElementById("controls").remove();
   if(sessionStorage.getItem("buttonClicked") === "clicked") {
-            api.get("/products/PC/features", {}, function (response) {
+            api.get("/products/" + productKey + "/features", {}, function (response) {
               // Do something with the features.
             console.log(response);
             sessionStorage.setItem("buttonClicked", "notclicked");
