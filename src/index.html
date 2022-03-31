@@ -37,7 +37,7 @@
             var productKey = document.getElementById("product-key").value || "PC";
             console.log(productKey);
             // Hide the controls.
-             document.getElementById("controls").remove();
+             //document.getElementById("controls").remove();
             if (sessionStorage.getItem("buttonClicked") === "clicked") {
               api.get("/products/" + productKey + "/features", {}, function (response) {
                 // Do something with the features.
