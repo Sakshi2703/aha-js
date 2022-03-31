@@ -26,7 +26,7 @@
   console.log("inside script");
   // document.getElementById("controls").onclick(function () {
   
-      console.log("inside controls");
+      
       new AhaApi({
           accountDomain: "sakshi270396",
           // Replace this with your client ID.
@@ -34,7 +34,8 @@
           // Replace this with your redirect URL.
           redirectUri: "https://spa-js-aha.herokuapp.com/"
       }).authenticate(function (api, success, message) {
-          if( document.getElementById("subdomain") !== "") {
+        console.log("inside controls");
+          if( document.getElementById("subdomain").value !== "") {
           console.log("inside authenticate");
           var productKey = "PC";
   
