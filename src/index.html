@@ -22,7 +22,7 @@
 <script>
   function injectAPIKey() {
    setTimeout(
-   function() {
+    document.getElementById("buttonsubmit").onclick = function() {
   console.log("inside script");
   // document.getElementById("controls").onclick(function () {
   
@@ -40,12 +40,11 @@
           // Hide the controls.
           // document.getElementById("controls").remove();
   
-          document.getElementById("buttonsubmit").onclick = function() {
+         
             api.get("/products/PC/features", {}, function (response) {
               // Do something with the features.
             console.log(response);
           });
-        }
       });
       // return false;
   // });
