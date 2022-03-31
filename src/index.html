@@ -35,16 +35,13 @@
           }).authenticate(function (api, success, message) {
             console.log("inside authenticate");
             var productKey = document.getElementById("product-key").value;
-            if(productKey !== "") {
-            sessionStorage.setItem("productKey",document.getElementById("product-key").value);
-            productKey = sessionStorage.getItem("productKey");
-            }
+           
             
             console.log(productKey);
             // Hide the controls.
             // document.getElementById("controls").remove();
             if (sessionStorage.getItem("buttonClicked") === "clicked") {
-              api.get("/products/" + productKey + "/features", {}, function (response) {
+              api.get("/products/" + sessionStorage.getItem("productKey") + "/features", {}, function (response) {
                 // Do something with the features.
                 console.log(response);
                 api.put("/features/" + response["features"][0]["reference_num"], {
@@ -63,7 +60,11 @@
           // });
         }, 10000);
 
+
       document.getElementById("buttonsubmit").onclick = function () {
+        if(document.getElementById("product-key").value !== "") {
+            sessionStorage.setItem("productKey",document.getElementById("product-key").value);
+            }
         sessionStorage.setItem("buttonClicked", "clicked");
       }
     }
