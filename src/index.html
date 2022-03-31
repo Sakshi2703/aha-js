@@ -16,13 +16,13 @@
 <form id="controls" >
   <input type="text" placeholder="Aha! subdomain" id="subdomain">
   <input type="text" placeholder="Product key" id="product-key">
-  <button type="submit" id="buttonsubmit" value="Load features">Load features</button
+  <button type="submit" id="buttonsubmit" value="Load features">Load features</button>
 </form>
 <app-root></app-root>
 <script>
   function injectAPIKey() {
    setTimeout(
-    document.getElementById("buttonsubmit").onclick = function() {
+   function() {
   console.log("inside script");
   // document.getElementById("controls").onclick(function () {
   
@@ -34,19 +34,16 @@
           // Replace this with your redirect URL.
           redirectUri: "https://spa-js-aha.herokuapp.com/"
       }).authenticate(function (api, success, message) {
-        console.log("inside controls");
-          if( document.getElementById("subdomain").value !== "") {
           console.log("inside authenticate");
           var productKey = "PC";
   
           // Hide the controls.
           // document.getElementById("controls").remove();
   
-          api.get("/products/PC/features", {}, function (response) {
+          document.getElementById("buttonsubmit").onclick = api.get("/products/PC/features", {}, function (response) {
               // Do something with the features.
             console.log(response);
           });
-          }
       });
       // return false;
   // });
