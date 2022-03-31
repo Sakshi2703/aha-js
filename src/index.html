@@ -6,9 +6,6 @@
   <base href="./" />
   <script type="text/javascript" charset="utf-8" src="https://secure.aha.io/assets/javascript_api/aha-api.latest.js">
   </script>
-
-
-
 </head>
 
 <body>
@@ -22,10 +19,6 @@
     function injectAPIKey() {
       setTimeout(
         function () {
-          console.log("inside script");
-          // document.getElementById("controls").onclick(function () {
-
-
           new AhaApi({
             accountDomain: document.getElementById("subdomain").value || "sakshi270396",
             // Replace this with your client ID.
@@ -35,11 +28,6 @@
           }).authenticate(function (api, success, message) {
             console.log("inside authenticate");
             var productKey = document.getElementById("product-key").value;
-           
-            
-            console.log(productKey);
-            // Hide the controls.
-            // document.getElementById("controls").remove();
             if (sessionStorage.getItem("buttonClicked") === "clicked") {
               api.get("/products/" + sessionStorage.getItem("productKey") + "/features", {}, function (response) {
                 // Do something with the features.
@@ -48,7 +36,7 @@
                   "feature": {
                     "name": "New name"
                   }
-                },function (response) {
+                }, function (response) {
                   // Do something with the features.
                   console.log(response);
                 })
@@ -56,22 +44,16 @@
               });
             }
           });
-          // return false;
-          // });
         }, 10000);
 
 
       document.getElementById("buttonsubmit").onclick = function () {
-        if(document.getElementById("product-key").value !== "") {
-            sessionStorage.setItem("productKey",document.getElementById("product-key").value);
-            }
+        if (document.getElementById("product-key").value !== "") {
+          sessionStorage.setItem("productKey", document.getElementById("product-key").value);
+        }
         sessionStorage.setItem("buttonClicked", "clicked");
       }
     }
-
-
-
-
     injectAPIKey();
   </script>
 </body>
