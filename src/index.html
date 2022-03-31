@@ -22,7 +22,7 @@
 <script>
   function injectAPIKey() {
    setTimeout(
-    document.getElementById("buttonsubmit").onclick = function() {
+   function() {
   console.log("inside script");
   // document.getElementById("controls").onclick(function () {
   
@@ -39,16 +39,21 @@
   
           // Hide the controls.
           // document.getElementById("controls").remove();
-  
-         
+  if(sessionStorage.getItem("buttonClicked") === "clicked") {
             api.get("/products/PC/features", {}, function (response) {
               // Do something with the features.
             console.log(response);
+            sessionStorage.setItem("buttonClicked", "notclicked");
           });
+        }
       });
       // return false;
   // });
       }, 10000);
+
+      document.getElementById("buttonsubmit").onclick = function() {
+        sessionStorage.setItem("buttonClicked", "clicked");
+      }
 }
 
 
