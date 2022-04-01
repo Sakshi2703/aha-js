@@ -14,7 +14,7 @@
     <input type="text" placeholder="Product key" id="product-key">
     <button type="submit" id="buttonsubmit" value="Load features">Load features</button>
   </form> -->
-  <app-root></app-root>
+  <app-root [api]="api"></app-root>
   <script>
     function injectAPIKey() {
       setTimeout(
