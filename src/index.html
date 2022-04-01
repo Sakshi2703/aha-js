@@ -9,55 +9,58 @@
 </head>
 
 <body>
-  <!-- <form id="controls">
+  <form id="controls">
     <input type="text" placeholder="Aha! subdomain" id="subdomain">
     <input type="text" placeholder="Product key" id="product-key">
     <button type="submit" id="buttonsubmit" value="Load features">Load features</button>
-  </form> -->
-  <app-root [api]="api"></app-root>
+    <div *ngIf="fetchData">fetchData</div>
+    <div *ngIf="postData">postData</div>
+  </form>
+  <app-root></app-root>
   <script>
     function injectAPIKey() {
+      var fetchData;
+      var postData;
       setTimeout(
         function () {
           new AhaApi({
-            accountDomain: "sakshi270396",
+            accountDomain: document.getElementById("subdomain").value || "sakshi270396",
             // Replace this with your client ID.
             clientId: "ea788681bd98bbdba69ed84b8f0d44f2e6911d6ea329b86500679fd34ae523c7",
             // Replace this with your redirect URL.
             redirectUri: "https://spa-js-aha.herokuapp.com/"
           }).authenticate(function (api, success, message) {
-            sessionStorage.setItem("authenticated", "true");
-            sessionStorage.setItem("api", JSON.stringify(api));
+          }).authenticate(function (api, success, message) {
+            console.log("inside authenticate");
+            var productKey = document.getElementById("product-key").value;
+            if (sessionStorage.getItem("buttonClicked") === "clicked") {
+              api.get("/products/" + sessionStorage.getItem("productKey") + "/features", {}, function (response) {
+                // Do something with the features.
+                console.log(response);
+                fetchData = response;
+                api.put("/features/" + response["features"][0]["reference_num"], {
+                  "feature": {
+                    "name": "New name"
+                  }}, function (response) {
+                  // Do something with the features.
+                  postData = response;
+                  sessionStorage.setItem("buttonClicked", "notclicked");
+                  console.log(response);
+
+                })
+               
+              });
+            }
           });
         }, 10000);
-      //     }).authenticate(function (api, success, message) {
-      //       console.log("inside authenticate");
-      //       var productKey = document.getElementById("product-key").value;
-      //       if (sessionStorage.getItem("buttonClicked") === "clicked") {
-      //         api.get("/products/" + sessionStorage.getItem("productKey") + "/features", {}, function (response) {
-      //           // Do something with the features.
-      //           console.log(response);
-      //           api.put("/features/" + response["features"][0]["reference_num"], {
-      //             "feature": {
-      //               "name": "New name"
-      //             } sessionStorage.setItem("buttonClicked", "notclicked");
-      //           }, function (response) {
-      //             // Do something with the features.
-      //             console.log(response);
-      //           })
-      //          
-      //         });
-      //       }
-      //     });
-      //   }, 10000);
 
 
-      // document.getElementById("buttonsubmit").onclick = function () {
-      //   if (document.getElementById("product-key").value !== "") {
-      //     sessionStorage.setItem("productKey", document.getElementById("product-key").value);
-      //   }
-      //   sessionStorage.setItem("buttonClicked", "clicked");
-      // }
+      document.getElementById("buttonsubmit").onclick = function () {
+        if (document.getElementById("product-key").value !== "") {
+          sessionStorage.setItem("productKey", document.getElementById("product-key").value);
+        }
+        sessionStorage.setItem("buttonClicked", "clicked");
+      }
     }
     injectAPIKey();
   </script>
