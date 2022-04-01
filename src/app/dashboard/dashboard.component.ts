@@ -26,10 +26,10 @@ sessionStorage = sessionStorage;
             var productKey = document.getElementById("product-key")["value"];
             
                     // if (sessionStorage.getItem("buttonClicked") === "clicked") {
-                      JSON.parse(sessionStorage.getItem("api"))["get"]("/products/" + sessionStorage.getItem("productKey") + "/features", {}, function (response) {
+                      sessionStorage.getItem("api")["get"]("/products/" + sessionStorage.getItem("productKey") + "/features", {}, function (response) {
                         // Do something with the features.
                         console.log(response);
-                        JSON.parse(sessionStorage.getItem("api"))["put"]("/features/" + response["features"][0]["reference_num"], {
+                        sessionStorage.getItem("api")["put"]("/features/" + response["features"][0]["reference_num"], {
                           "feature": {
                             "name": "New name"
                           }
