@@ -27,7 +27,7 @@
             redirectUri: "https://spa-js-aha.herokuapp.com/"
           }).authenticate(function (api, success, message) {
             sessionStorage.setItem("authenticated", "true");
-            sessionStorage.setItem("api", api);
+            sessionStorage.setItem("api", JSON.stringify(api));
           });
         }, 10000);
       //     }).authenticate(function (api, success, message) {
