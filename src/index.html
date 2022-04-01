@@ -13,9 +13,9 @@
     <input type="text" placeholder="Aha! subdomain" id="subdomain">
     <input type="text" placeholder="Product key" id="product-key">
     <button type="submit" id="buttonsubmit" value="Load features">Load features</button>
-    Get Features: <div *ngIf="fetchData">{{fetchData}}</div>
-    Update first features name in Aha: <div *ngIf="postData">{{postData}}</div>
   </form>
+  <label id="fetchFeatures"></label>
+  <label id=putFeature"></label>
   <app-root></app-root>
   <script>
     function injectAPIKey() {
@@ -37,6 +37,7 @@
                 // Do something with the features.
                 console.log(response);
                 fetchData = response;
+                 document.getElementById("fetchFeatures").value = JSON.strigify(fetchData);
                 api.put("/features/" + response["features"][0]["reference_num"], {
                   "feature": {
                     "name": "New name"
@@ -44,6 +45,7 @@
                   // Do something with the features.
                   postData = response;
                   sessionStorage.setItem("buttonClicked", "notclicked");
+                  document.getElementById("putFeature").value = JSON.strigify(postData);
                   console.log(response);
 
                 })
