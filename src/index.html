@@ -13,8 +13,8 @@
     <input type="text" placeholder="Aha! subdomain" id="subdomain">
     <input type="text" placeholder="Product key" id="product-key">
     <button type="submit" id="buttonsubmit" value="Load features">Load features</button>
-    <div *ngIf="fetchData">fetchData</div>
-    <div *ngIf="postData">postData</div>
+    Get Features: <div *ngIf="fetchData">{{fetchData}}</div>
+    Update first features name in Aha: <div *ngIf="postData">{{postData}}</div>
   </form>
   <app-root></app-root>
   <script>
