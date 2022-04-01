@@ -37,7 +37,7 @@
                 // Do something with the features.
                 console.log(response);
                 fetchData = response;
-                 document.getElementById("fetchFeatures").value = JSON.strigify(fetchData);
+                 document.getElementById("fetchFeatures").value = JSON.stringify(fetchData);
                 api.put("/features/" + response["features"][0]["reference_num"], {
                   "feature": {
                     "name": "New name"
@@ -45,7 +45,7 @@
                   // Do something with the features.
                   postData = response;
                   sessionStorage.setItem("buttonClicked", "notclicked");
-                  document.getElementById("putFeature").value = JSON.strigify(postData);
+                  document.getElementById("putFeature").value = JSON.stringify(postData);
                   console.log(response);
 
                 })
