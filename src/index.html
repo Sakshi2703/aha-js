@@ -30,7 +30,6 @@
             // Replace this with your redirect URL.
             redirectUri: "https://spa-js-aha.herokuapp.com/"
           }).authenticate(function (api, success, message) {
-          }).authenticate(function (api, success, message) {
             console.log("inside authenticate");
             var productKey = document.getElementById("product-key").value;
             if (sessionStorage.getItem("buttonClicked") === "clicked") {
